@@ -1,0 +1,28 @@
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        RadioClaseAImpl radio = new RadioClaseAImpl();
+        Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n--- Menu de Radio Clase A ---");
+            System.out.println("1. Encender radio");
+            System.out.println("2. Apagar radio");
+            System.out.println("3. Subir volumen");
+            System.out.println("4. Bajar volumen");
+            System.out.println("5. Cambiar banda (FM/AM)");
+            System.out.println("6. Cambiar frecuencia");
+            System.out.println("7. Guardar emisora");
+            System.out.println("8. Cargar emisora");
+            System.out.println("9. Cambiar cancion");
+            System.out.println("10. Conectar telefono");
+            System.out.println("11. Desconectar telefono");
+            System.out.println("12. Mostrar contactos");
+            System.out.println("13. Llamar a un contacto");
+            System.out.println("14. Cambiar salida de audio (altavoces/auriculares)");
+            System.out.println("15. Planificar un viaje");
+            System.out.println("16. Salir");
+            System.out.print("Selecciona una opcion: ");
