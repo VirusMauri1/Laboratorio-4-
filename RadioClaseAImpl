@@ -127,3 +127,41 @@ public class RadioClaseAImpl implements ClaseA {
             System.out.println("No hay teléfono conectado.");
         }
     }
+
+    public void llamarContacto(String contacto) {
+        if (telefonoConectado) {
+            if (contactos.contains(contacto)) {
+                System.out.println("Llamando a: " + contacto);
+            } else {
+                System.out.println("Contacto no encontrado.");
+            }
+        } else {
+            System.out.println("No hay teléfono conectado.");
+        }
+    }
+
+    @Override
+    public void cambiarAudioSalida(boolean speaker) {
+        if (estaEncendido) {
+            modoAltavoz = speaker;
+            String modo = speaker ? "altavoces" : "auriculares";
+            System.out.println("Modo de audio cambiado a: " + modo);
+        } else {
+            System.out.println("El radio está apagado. No se puede cambiar el modo de audio.");
+        }
+    }
+
+    @Override
+    public void planificarViajes(String inicio, String fin, LocalDateTime horaLlegada, LocalDateTime horaSalida) {
+        if (estaEncendido) {
+            System.out.println("Planificación de viaje:");
+            System.out.println("Inicio: " + inicio);
+            System.out.println("Fin: " + fin);
+            System.out.println("Hora de salida: " + horaSalida);
+            System.out.println("Hora de llegada: " + horaLlegada);
+        } else {
+            System.out.println("El radio está apagado. No se puede planificar un viaje.");
+        }
+    }
+}
+
