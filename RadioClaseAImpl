@@ -1,0 +1,66 @@
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class RadioClaseAImpl implements ClaseA {
+    private boolean estaEncendido = false;
+    private boolean modoAltavoz = true; // true para altavoces, false para auriculares
+    private int volumen = 10; // Volumen inicial
+    private String banda = "FM"; // Banda inicial
+    private double frecuencia = 88.0; // Frecuencia inicial
+    private final HashMap<Integer, Double> emisorasGuardadas = new HashMap<>();
+    private int indiceCancion = 0;
+    private final List<String> canciones = List.of(
+        "Canción 1 - Autor: A - Género: Pop - Duración: 3:45",
+        "Canción 2 - Autor: B - Género: Rock - Duración: 4:20",
+        "Canción 3 - Autor: C - Género: Jazz - Duración: 5:10"
+    );
+    private boolean telefonoConectado = false;
+    private final List<String> contactos = List.of("Contacto 1", "Contacto 2", "Contacto 3");
+
+    public void encender() {
+        estaEncendido = true;
+        System.out.println("El radio está encendido.");
+    }
+
+    public void apagar() {
+        estaEncendido = false;
+        System.out.println("El radio está apagado.");
+    }
+
+    public void subirVolumen() {
+        if (estaEncendido) {
+            if (volumen < 100) {
+                volumen++;
+                System.out.println("Volumen actual: " + volumen);
+            } else {
+                System.out.println("El volumen ya está al máximo.");
+            }
+        } else {
+            System.out.println("El radio está apagado. No se puede ajustar el volumen.");
+        }
+    }
+
+    public void bajarVolumen() {
+        if (estaEncendido) {
+            if (volumen > 0) {
+                volumen--;
+                System.out.println("Volumen actual: " + volumen);
+            } else {
+                System.out.println("El volumen ya está al mínimo.");
+            }
+        } else {
+            System.out.println("El radio está apagado. No se puede ajustar el volumen.");
+        }
+    }
+
+    public void cambiarBanda() {
+        if (estaEncendido) {
+            banda = banda.equals("FM") ? "AM" : "FM";
+            frecuencia = banda.equals("FM") ? 88.0 : 530.0;
+            System.out.println("Banda cambiada a: " + banda + " - Frecuencia inicial: " + frecuencia);
+        } else {
+            System.out.println("El radio está apagado. No se puede cambiar la banda.");
+        }
+    }
