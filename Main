@@ -26,3 +26,124 @@ public class Main {
             System.out.println("15. Planificar un viaje");
             System.out.println("16. Salir");
             System.out.print("Selecciona una opcion: ");
+
+            String opcionStr = scanner.nextLine(); // Leer la opcion como cadena
+            int opcion;
+
+            try {
+                opcion = Integer.parseInt(opcionStr); // Intentar convertir a entero
+            } catch (NumberFormatException e) {
+                System.out.println("Opcion no valida. Por favor, ingresa un numero.");
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    radio.encender();
+                    break;
+                case 2:
+                    radio.apagar();
+                    break;
+                case 3:
+                    radio.subirVolumen();
+                    break;
+                case 4:
+                    radio.bajarVolumen();
+                    break;
+                case 5:
+                    radio.cambiarBanda();
+                    break;
+                case 6:
+                    System.out.print("Ingresa el cambio de frecuencia (+/-): ");
+                    String frecuenciaStr = scanner.nextLine();
+                    try {
+                        double cambioFrecuencia = Double.parseDouble(frecuenciaStr);
+                        radio.cambiarFrecuencia(cambioFrecuencia);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Entrada invalida. Por favor, ingresa un numero decimal.");
+                    }
+                    break;
+                case 7:
+                    System.out.print("Ingresa la posicion para guardar la emisora (1-50): ");
+                    String posicionGuardarStr = scanner.nextLine();
+                    try {
+                        int posicionGuardar = Integer.parseInt(posicionGuardarStr);
+                        radio.guardarEmisora(posicionGuardar);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Entrada invalida. Por favor, ingresa un numero entero.");
+                    }
+                    break;
+                case 8:
+                    System.out.print("Ingresa la posicion para cargar la emisora (1-50): ");
+                    String posicionCargarStr = scanner.nextLine();
+                    try {
+                        int posicionCargar = Integer.parseInt(posicionCargarStr);
+                        radio.cargarEmisora(posicionCargar);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Entrada invalida. Por favor, ingresa un numero entero.");
+                    }
+                    break;
+                case 9:
+                    System.out.print("¿Cambiar hacia adelante? (true/false): ");
+                    String adelanteStr = scanner.nextLine();
+                    try {
+                        boolean adelante = Boolean.parseBoolean(adelanteStr);
+                        radio.cambiarCancion(adelante);
+                    } catch (Exception e) {
+                        System.out.println("Entrada invalida. Por favor, ingresa true o false.");
+                    }
+                    break;
+                case 10:
+                    radio.conectarTelefono();
+                    break;
+                case 11:
+                    radio.desconectarTelefono();
+                    break;
+                case 12:
+                    radio.mostrarContactos();
+                    break;
+                case 13:
+                    System.out.print("Ingresa el nombre del contacto: ");
+                    String contacto = scanner.nextLine();
+                    radio.llamarContacto(contacto);
+                    break;
+                case 14:
+                    System.out.print("¿Cambiar a altavoces? (true/false): ");
+                    String altavozStr = scanner.nextLine();
+                    try {
+                        boolean altavoz = Boolean.parseBoolean(altavozStr);
+                        radio.cambiarAudioSalida(altavoz);
+                    } catch (Exception e) {
+                        System.out.println("Entrada invalida. Por favor, ingresa true o false.");
+                    }
+                    break;
+                case 15:
+                    System.out.print("Lugar de inicio: ");
+                    String inicio = scanner.nextLine();
+                    System.out.print("Lugar de destino: ");
+                    String fin = scanner.nextLine();
+                    System.out.print("Hora de salida (yyyy-MM-ddTHH:mm): ");
+                    String horaSalidaStr = scanner.nextLine();
+                    System.out.print("Hora de llegada (yyyy-MM-ddTHH:mm): ");
+                    String horaLlegadaStr = scanner.nextLine();
+                    try {
+                        LocalDateTime horaSalida = LocalDateTime.parse(horaSalidaStr);
+                        LocalDateTime horaLlegada = LocalDateTime.parse(horaLlegadaStr);
+                        radio.planificarViajes(inicio, fin, horaLlegada, horaSalida);
+                    } catch (Exception e) {
+                        System.out.println("Formato de fecha invalido. Usa el formato yyyy-MM-ddTHH:mm.");
+                    }
+                    break;
+                case 16:
+                    salir = true;
+                    System.out.println("Saliendo del sistema. Gracias por usar el Radio Clase A!");
+                    break;
+                default:
+                    System.out.println("Opcion no valida. Intenta de nuevo.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
