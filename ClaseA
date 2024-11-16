@@ -1,0 +1,6 @@
+import java.time.LocalDateTime;
+
+public interface ClaseA {
+    void cambiarAudioSalida(boolean speaker); // Cambiar entre altavoces o auriculares
+    void planificarViajes(String inicio, String fin, LocalDateTime horaLlegada, LocalDateTime horaSalida);
+}
