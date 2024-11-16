@@ -64,3 +64,66 @@ public class RadioClaseAImpl implements ClaseA {
             System.out.println("El radio está apagado. No se puede cambiar la banda.");
         }
     }
+
+    public void cambiarFrecuencia(double cambio) {
+        if (estaEncendido) {
+            frecuencia += cambio;
+            System.out.println("Frecuencia actual: " + frecuencia + " " + banda);
+        } else {
+            System.out.println("El radio está apagado. No se puede cambiar la frecuencia.");
+        }
+    }
+
+    public void guardarEmisora(int posicion) {
+        if (estaEncendido) {
+            if (posicion >= 1 && posicion <= 50) {
+                emisorasGuardadas.put(posicion, frecuencia);
+                System.out.println("Emisora guardada en la posición " + posicion + ": " + frecuencia + " " + banda);
+            } else {
+                System.out.println("Posición inválida. Solo se permiten posiciones entre 1 y 50.");
+            }
+        } else {
+            System.out.println("El radio está apagado. No se puede guardar una emisora.");
+        }
+    }
+
+    public void cargarEmisora(int posicion) {
+        if (estaEncendido) {
+            if (emisorasGuardadas.containsKey(posicion)) {
+                frecuencia = emisorasGuardadas.get(posicion);
+                System.out.println("Emisora cargada desde la posición " + posicion + ": " + frecuencia + " " + banda);
+            } else {
+                System.out.println("No hay emisora guardada en la posición " + posicion);
+            }
+        } else {
+            System.out.println("El radio está apagado. No se puede cargar una emisora.");
+        }
+    }
+
+    public void cambiarCancion(boolean adelante) {
+        if (estaEncendido) {
+            indiceCancion = (indiceCancion + (adelante ? 1 : -1) + canciones.size()) % canciones.size();
+            System.out.println("Reproduciendo: " + canciones.get(indiceCancion));
+        } else {
+            System.out.println("El radio está apagado. No se puede cambiar la canción.");
+        }
+    }
+
+    public void conectarTelefono() {
+        telefonoConectado = true;
+        System.out.println("Teléfono conectado.");
+    }
+
+    public void desconectarTelefono() {
+        telefonoConectado = false;
+        System.out.println("Teléfono desconectado.");
+    }
+
+    public void mostrarContactos() {
+        if (telefonoConectado) {
+            System.out.println("Contactos disponibles:");
+            contactos.forEach(System.out::println);
+        } else {
+            System.out.println("No hay teléfono conectado.");
+        }
+    }
